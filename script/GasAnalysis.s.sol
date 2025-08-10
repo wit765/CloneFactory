@@ -13,7 +13,10 @@ contract GasAnalysisScript is Script {
         vm.startBroadcast();
         
         // 部署工厂合约
-        MemeFactory factory = new MemeFactory(projectOwner);
+        // 注意：这里需要提供Uniswap Router和WETH地址，为了示例我们使用虚拟地址
+        address mockUniswapRouter = makeAddr("mockUniswapRouter");
+        address mockWETH = makeAddr("mockWETH");
+        MemeFactory factory = new MemeFactory(projectOwner, mockUniswapRouter, mockWETH);
         console.log("=== Gas Analysis ===");
         console.log("Factory deployed at:", address(factory));
         

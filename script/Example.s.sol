@@ -16,7 +16,10 @@ contract ExampleScript is Script {
         vm.startBroadcast();
         
         // 1. 项目方部署工厂合约
-        MemeFactory factory = new MemeFactory(projectOwner);
+        // 注意：这里需要提供Uniswap Router和WETH地址，为了示例我们使用虚拟地址
+        address mockUniswapRouter = makeAddr("mockUniswapRouter");
+        address mockWETH = makeAddr("mockWETH");
+        MemeFactory factory = new MemeFactory(projectOwner, mockUniswapRouter, mockWETH);
         console.log("MemeFactory deployed at:", address(factory));
         
         // 2. Meme发行者创建代币

@@ -10,7 +10,11 @@ contract DeployScript is Script {
         vm.startBroadcast(deployerPrivateKey);
 
         // 部署Meme工厂合约
-        MemeFactory factory = new MemeFactory(msg.sender);
+        // 注意：需要提供Uniswap V2 Router和WETH地址
+        address uniswapRouter = vm.envAddress("UNISWAP_ROUTER");
+        address WETH = vm.envAddress("WETH");
+        
+        MemeFactory factory = new MemeFactory(msg.sender, uniswapRouter, WETH);
         
         console.log("MemeFactory deployed at:", address(factory));
         console.log("Implementation contract at:", address(factory.memeTokenImplementation()));

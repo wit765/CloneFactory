@@ -26,9 +26,12 @@ interface IMemeToken {
         uint256 _totalSupply,
         uint256 _perMint,
         uint256 _price,
-        address initialOwner
+        address initialOwner,
+        address _factory
     ) external;
     
     function mint(address to, uint256 amount) external;
+    function mintFromFactory(address to, uint256 amount, address factory) external;
+    function transferForLiquidity(address to, uint256 amount) external;
     function getMintInfo() external view returns (uint256, uint256, uint256);
 } 
